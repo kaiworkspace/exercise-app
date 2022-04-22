@@ -4,7 +4,7 @@ import notificationStart from '../resources/notifyStart.wav'
 import notificationEnd from   '../resources/notifyEnd.wav'
 import axios from 'axios'
 
-export default function Home(){
+export default function StartExercise(){
     
     const [exerciseName, setExerciseName] = useState("")
     const [time, setTime] = useState(0)
