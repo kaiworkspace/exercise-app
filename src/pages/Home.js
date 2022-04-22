@@ -33,31 +33,42 @@ export default function Home(){
         audioEnd.loop = false
 
         const data = exerciseData.setExercise
-        console.log(data)
+        let exerciseDuration = exerciseData.setDuration
+        console.log("data: " + data)
         // TODO update function
-        // data.forEach((exercise, index)=>{
-        //     let counter = exercise.duration
-        //     setTimeout(()=>{
-        //         // change display exercise
-        //         setExerciseName(exercise.exerciseName)
+        data.forEach((exercise, index)=>{
+            let counter = exerciseDuration
+            setTimeout(()=>{
+                // change display exercise
+                setExerciseName(exercise)
 
-        //         // play notification sound
-        //         audioStart.play()
+                // play notification sound
+                audioStart.play()
 
-        //         // loop individual exercise time
-        //         const interval = setInterval(()=>{
-        //             setTime(counter)
-        //             console.log(counter)
-        //             counter -= 1
-        //             if(counter == 5){
-        //                 audioEnd.play()
-        //             }
-        //             if(counter == -1){
-        //                 clearInterval(interval)
-        //             }
-        //         }, 200)
-        //     }, index*(exercise.duration+1)*200)
-        // })
+                // loop individual exercise time
+                const interval = setInterval(()=>{
+                    setTime(counter)
+                    console.log(counter)
+                    counter -= 1
+                    if(counter == 0){
+                        setExerciseName("Transitioning")
+                        audioEnd.play()
+                    }
+                    if(counter == -6){
+                        clearInterval(interval)
+                    }
+                }, 200)
+            }, index*(exerciseDuration+6)*200)
+        })
+    }
+
+    const renderTime=()=>{
+        if(time<0){
+            return(<div>0</div>)
+        }
+        else{
+            return(<div>{time}</div>)
+        }
     }
 
     if(loading){
@@ -67,8 +78,8 @@ export default function Home(){
         return (
             <div>
                 <h1>{exerciseName}</h1>
-                <h3>{time}</h3>
-                <button onClick={startExercise}>Hit Me</button>
+                <h3>{renderTime()}</h3>
+                <button onClick={startExercise}>Start</button>
                 <button onClick={()=>console.log(exerciseData)}>Press Me</button>
             </div>
         )
