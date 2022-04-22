@@ -2,6 +2,7 @@ from unicodedata import category
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 import json
+import sqlite3
 
 app = Flask(__name__)
 
@@ -32,6 +33,14 @@ def postExercise():
     print(exerciseObj)
 
     # add exerciseObj to db
+    connection = sqlite3.connect("exercise.db")
+    cursor = connection.cursor()
+    
+    # table for sets
+    
+
+    # table for exercises in set
+
 
     print("Success")
     return jsonify(
