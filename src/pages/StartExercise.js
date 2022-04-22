@@ -1,11 +1,14 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
+import { useLocation  } from 'react-router-dom'
 import notificationStart from '../resources/notifyStart.wav'
 import notificationEnd from   '../resources/notifyEnd.wav'
 import axios from 'axios'
 
 export default function StartExercise(){
     
+    // TODO use props to pass data
+    const location = useLocation()
     const [exerciseName, setExerciseName] = useState("")
     const [time, setTime] = useState(0)
     const [exerciseData, setExerciseData] = useState(null)
@@ -13,7 +16,6 @@ export default function StartExercise(){
 
     useEffect(()=>{
         getAllData()
-
         setLoading(false)
     }, [])
 
