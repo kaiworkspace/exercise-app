@@ -7,17 +7,6 @@ import sqlite3
 
 app = Flask(__name__)
 
-userData = {"data": [
-    {   
-        "exerciseName": "Upward Dog",
-        "duration": 50
-    }, 
-    {   
-        "exerciseName": "and sth else..",
-        "duration": 50
-    }
-    ]}
-
 # TO DO modify return data to select from db
 @app.route("/exercise")
 def exercise():
@@ -104,6 +93,34 @@ def postExercise():
         data = "some data",
         status = 200
     )
+
+
+@app.route('/home', methods=["GET"])
+def getAllWorkout():
+    workoutArr = []
+    # get data from database
+    connection = sqlite3.Connection('exercise.db')
+    cursor = connection.cursor()
+
+    cursor.execute("""
+        SELECT ES.setId, ES.setName FROM ExerciseSet ES
+    """)
+    for items in cursor:
+        setId = items[0]
+        setName = items[1]
+        workout = {"setId": setId, "setName": setName}
+        workoutArr.append(workout)
+        
+    
+    jsonData = json.dumps(workoutArr)
+
+    return jsonify(
+        message = "Successfully fetched data ",
+        category = "Success",
+        data = jsonData,
+        status = 200
+    )
+
 
 def createDatabase():
     connection = sqlite3.connect("exercise.db")
