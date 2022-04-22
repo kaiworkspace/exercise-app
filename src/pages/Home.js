@@ -19,9 +19,9 @@ export default function Home(){
 
     const getAllData = async()=>{
         const res = await axios.get('/exercise').then(response =>{
-            const output = response.data.data
+            const output = JSON.parse(response.data.data)
             setExerciseData(output)
-            console.log("completed")
+            console.log("Data fetched")
         })
     }
 
@@ -32,30 +32,32 @@ export default function Home(){
         audioStart.loop = false
         audioEnd.loop = false
 
-        const data = exerciseData.data
-        data.forEach((exercise, index)=>{
-            let counter = exercise.duration
-            setTimeout(()=>{
-                // change display exercise
-                setExerciseName(exercise.exerciseName)
+        const data = exerciseData.setExercise
+        console.log(data)
+        // TODO update function
+        // data.forEach((exercise, index)=>{
+        //     let counter = exercise.duration
+        //     setTimeout(()=>{
+        //         // change display exercise
+        //         setExerciseName(exercise.exerciseName)
 
-                // play notification sound
-                audioStart.play()
+        //         // play notification sound
+        //         audioStart.play()
 
-                // loop individual exercise time
-                const interval = setInterval(()=>{
-                    setTime(counter)
-                    console.log(counter)
-                    counter -= 1
-                    if(counter == 5){
-                        audioEnd.play()
-                    }
-                    if(counter == -1){
-                        clearInterval(interval)
-                    }
-                }, 200)
-            }, index*(exercise.duration+1)*200)
-        })
+        //         // loop individual exercise time
+        //         const interval = setInterval(()=>{
+        //             setTime(counter)
+        //             console.log(counter)
+        //             counter -= 1
+        //             if(counter == 5){
+        //                 audioEnd.play()
+        //             }
+        //             if(counter == -1){
+        //                 clearInterval(interval)
+        //             }
+        //         }, 200)
+        //     }, index*(exercise.duration+1)*200)
+        // })
     }
 
     if(loading){
