@@ -4,10 +4,6 @@ import { useState, useEffect } from 'react'
 
 export default function AddExercise(){
 
-    // axios function to post data
-    // ....
-
-
     const [newExercise, setNewExercise] = useState([])
     const [id, setNewId] = useState(1)
     const [setName, setNewSetName] = useState("")
@@ -60,15 +56,17 @@ export default function AddExercise(){
         )
     })
 
-    const saveSet=()=>{
+    const saveSet= async ()=>{
         const exerciseSet = {
                                 setName: setName,
                                 setDuration: intervalDuration,
                                 data: newExercise
                             }
-        console.log(exerciseSet)
-
-        // call axios post
+        // console.log(exerciseSet)
+        let parseSetData = JSON.stringify(exerciseSet)
+        // axios post
+        const res = await axios.post("/add-exercise", parseSetData)
+        console.log(res)
     }
 
     return (
