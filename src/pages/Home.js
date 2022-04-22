@@ -5,21 +5,61 @@ import { Link } from 'react-router-dom'
 
 export default function Home(){
 
+    const [allWorkout, setAllWorkout] = useState([])
+    const [select, setSelect] = useState([])
+    const [flag, setFlag] = useState(false)
     // fetch info from server
+    const fetchWorkOut = async ()=>{
+        const res = await axios.get('/home').then(response =>{
+            const output = JSON.parse(response.data.data)
+            setAllWorkout(output)
+        })
+    }
+
+    useEffect(()=>{
+        fetchWorkOut()
+    }, [])
+
+    const renderWorkout = allWorkout.map((workout)=>{
+        return (
+            <div key={workout.setId}>
+                <h3 onClick={()=>{
+                    setSelect(workout)
+                    setFlag(true)
+                }}>
+                    {workout.setName}
+                </h3>
+            </div>
+            )
+    })
+
+    const renderStartLink = ()=>{
+        if(flag == true){
+            return (
+                <Link to={
+                    {
+                        pathname: "/start-exercise",
+                        state: {data: "hello world"}
+                    }
+                }>Start</Link>
+            )
+        }
+    }
 
     return(
         <div>
             <div>
                 <h3>Select workout</h3>
-                {/* TODO: load user set */}
+                {renderWorkout}
+                <button onClick={()=>console.log(select)}>test</button>
             </div>
             <div>
                 <h3>Start Exercise Set</h3>
-                <Link to="/start-exercise" onClick={console.log("Hello world")}>Start</Link>
+                {renderStartLink()}
             </div>
             <div>
                 <h3>Add Exercise</h3>
-                <Link to="/add-exercise" onClick={console.log("BYE")}>Add</Link>
+                <Link to="/add-exercise">Add</Link>
             </div>
         </div>
     ) 
