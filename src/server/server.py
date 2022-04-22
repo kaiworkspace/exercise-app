@@ -33,14 +33,7 @@ def postExercise():
     print(exerciseObj)
 
     # add exerciseObj to db
-    connection = sqlite3.connect("exercise.db")
-    cursor = connection.cursor()
-    
-    # table for sets
-    
-
-    # table for exercises in set
-
+    # some code here....
 
     print("Success")
     return jsonify(
@@ -50,5 +43,31 @@ def postExercise():
         status = 200
     )
 
+def createDatabase():
+    connection = sqlite3.connect("exercise.db")
+    cursor = connection.cursor()
+    
+    # table for sets
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS ExerciseSet(
+            setId INT PRIMARY KEY,
+            setName TEXT,
+            setDuration INT
+        )
+    """)
+
+    # table for exercises in set
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS Exercise(
+            exerciseId INT PRIMARY KEY,
+            exerciseName TEXT,
+            setId INT
+        )
+    """)
+
+    connection.commit()
+    connection.close()
+
 if __name__ == "__main__":
+    # createDatabase()
     app.run(port=5000)
