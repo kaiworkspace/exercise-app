@@ -23,3 +23,6 @@ yarn-debug.log*
 yarn-error.log*
 package-lock.json
 src/server/exercise.db
+src/server/test.db
+src/server/test.db-journal
+src/server/test.ipynb
