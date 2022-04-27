@@ -1,8 +1,9 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 import { useLocation  } from 'react-router-dom'
-import notificationStart from '../resources/notifyStart.wav'
-import notificationEnd from   '../resources/notifyEnd.wav'
+import notificationStart from '../resources/begin.mp3'
+import notificationTransition from '../resources/notification.mp3'
+import notificationEnd from   '../resources/completed.mp3'
 import axios from 'axios'
 
 export default function StartExercise(){
@@ -31,8 +32,10 @@ export default function StartExercise(){
     const startExercise = ()=>{
 
         const audioStart = new Audio(notificationStart)
+        const audioTransition = new Audio(notificationTransition)
         const audioEnd = new Audio(notificationEnd)
         audioStart.loop = false
+        audioTransition.loop = false
         audioEnd.loop = false
 
         const data = exerciseData.setExercise
@@ -57,10 +60,11 @@ export default function StartExercise(){
                         if(data.length-1 == index){
                             setExerciseName("Complete")
                             // play exercise end
+                            audioEnd.play()
                         }
                         else{
                             setExerciseName("Transitioning")
-                            audioEnd.play()
+                            audioTransition.play()
                         }
                     }
                     if(counter == -6){
