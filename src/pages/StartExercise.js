@@ -20,7 +20,8 @@ export default function StartExercise(){
     }, [])
 
     const getAllData = async()=>{
-        const res = await axios.get('/exercise').then(response =>{
+        const params = {id: location.state.data.setId}
+        const res = await axios.get('/exercise', {headers: params}).then(response =>{
             const output = JSON.parse(response.data.data)
             setExerciseData(output)
             console.log("Data fetched")
@@ -53,8 +54,14 @@ export default function StartExercise(){
                     console.log(counter)
                     counter -= 1
                     if(counter == 0){
-                        setExerciseName("Transitioning")
-                        audioEnd.play()
+                        if(data.length-1 == index){
+                            setExerciseName("Complete")
+                            // play exercise end
+                        }
+                        else{
+                            setExerciseName("Transitioning")
+                            audioEnd.play()
+                        }
                     }
                     if(counter == -6){
                         clearInterval(interval)

@@ -15,7 +15,8 @@ def exercise():
     cursor = connection.cursor()
 
     # TODO someway to get user targetID
-    targetID = 1
+    # print(request.args.get('id'))
+    targetID = request.headers.get('id')
 
     # fetch exercise
     cursor.execute("""
