@@ -83,6 +83,7 @@ export default function StartExercise(){
                 <h3>{renderTime()}</h3>
                 <button onClick={startExercise}>Start</button>
                 <button onClick={()=>console.log(exerciseData)}>Press Me</button>
+                <button onClick={()=>console.log(location.state.data)}>Test State</button>
             </div>
         )
     }

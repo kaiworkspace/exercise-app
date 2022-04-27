@@ -36,12 +36,13 @@ export default function Home(){
     const renderStartLink = ()=>{
         if(flag == true){
             return (
-                <Link to={
+                // pass data using state
+                <Link to="/start-exercise" state={
                     {
-                        pathname: "/start-exercise",
-                        state: {data: "hello world"}
+                    data: select
                     }
-                }>Start</Link>
+                }
+                >Start</Link>
             )
         }
     }
