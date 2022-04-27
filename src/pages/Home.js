@@ -52,7 +52,7 @@ export default function Home(){
             <div>
                 <h3>Select workout</h3>
                 {renderWorkout}
-                <button onClick={()=>console.log(select)}>test</button>
+                <button onClick={()=>console.log(select)}>Show Selected Exercise</button>
             </div>
             <div>
                 <h3>Start Exercise Set</h3>
