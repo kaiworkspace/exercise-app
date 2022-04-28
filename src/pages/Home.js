@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 
+import styles from '../css/style.module.css'
+
 export default function Home(){
 
     const [allWorkout, setAllWorkout] = useState([])
@@ -50,7 +52,7 @@ export default function Home(){
     return(
         <div>
             <div>
-                <h3>Select workout</h3>
+                <h3 className={styles.primary}>Select workout</h3>
                 {renderWorkout}
                 <button onClick={()=>console.log(select)}>Show Selected Exercise</button>
             </div>
