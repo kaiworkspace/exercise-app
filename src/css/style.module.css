@@ -1,3 +1,35 @@
-.primary {
-    color: green
+/* logo styles */
+.logo{
+    display: flex;
+    justify-content: center;
+    border: 2px dotted gray;
+    color:brown;
+}
+
+
+/* navbar styles */
+.navBar{
+    border: 2px dotted rgb(63, 59, 59);
+}
+
+.navBarList{
+    color: black;
+    list-style: none;
+    display: flex;
+    /* border: 2px solid red; */
+    justify-content: center;
+}
+
+.navBarLinks{
+    color: black;
+    text-decoration: none;
+    margin-left: 2em;
+    margin-right: 2em;
+    padding: 1em;
+    border: 2px solid goldenrod;
+}
+
+.navBarLinks:hover{
+    color: aquamarine;
+    transition: 250ms;
 }

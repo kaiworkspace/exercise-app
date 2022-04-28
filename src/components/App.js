@@ -5,9 +5,12 @@ import StartExercise from "../pages/StartExercise"
 import AddExercise from "../pages/AddExercise"
 import Home from "../pages/Home"
 
+import Header from "../components/Header"
+
 export default function App(){
     return (
         <div>
+            <Header />
             <Routes>
                 <Route path="/" element={<Home />}></Route>
                 <Route path="/start-exercise" element={<StartExercise />}></Route>

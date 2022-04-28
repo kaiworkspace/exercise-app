@@ -52,7 +52,7 @@ export default function Home(){
     return(
         <div>
             <div>
-                <h3 className={styles.primary}>Select workout</h3>
+                <h3>Select workout</h3>
                 {renderWorkout}
                 <button onClick={()=>console.log(select)}>Show Selected Exercise</button>
             </div>
