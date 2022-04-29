@@ -1,0 +1,35 @@
+/* home page style */
+
+.quote{
+    border: 2px solid red;
+    text-align: center;
+}
+
+.main{
+    border:2px dashed blue;
+    display:flex;
+    justify-content: center;
+}
+
+.mainSub{
+    border: 2px dotted green;
+    margin-left: 1em;
+    margin-right: 1em;
+}
+
+.workoutSel{
+    border: 2px dotted red;
+}
+
+.linkAddExercise{
+    color:black;
+    text-decoration: none;
+    font-size: larger;
+}
+
+.linkStartExercise{
+    color: black;
+    text-decoration: none;
+    font-size: larger;
+    font-weight: 400;
+}

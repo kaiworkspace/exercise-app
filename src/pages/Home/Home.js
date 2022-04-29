@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 
+import styles from './style.module.css'
+
 export default function Home(){
 
     const [allWorkout, setAllWorkout] = useState([])
@@ -22,7 +24,9 @@ export default function Home(){
 
     const renderWorkout = allWorkout.map((workout)=>{
         return (
-            <div key={workout.setId}>
+            <div 
+                className={styles.workoutSel}
+                key={workout.setId}>
                 <h3 onClick={()=>{
                     setSelect(workout)
                     setFlag(true)
@@ -49,22 +53,27 @@ export default function Home(){
 
     return(
         <>
-            <div>
+            <div className={styles.quote}>
                 <h1>Banner with inspirational quotes</h1>
             </div>
-            <div>
-                <h3>Select workout</h3>
-                {renderWorkout}
-                <button onClick={()=>console.log(select)}>Show Selected Exercise</button>
+            <div className={styles.main}>
+                <div className={styles.mainSub}>
+                    <h3>Select workout</h3>
+                    <div>{renderWorkout}</div>
+                    <Link to='/add-exercise' className={styles.linkAddExercise}>Add Workout</Link>
+                </div>
+                <div className={styles.mainSub}>
+                    <h3>Exercises</h3>
+                </div>
             </div>
-            <div>
-                <h3>Start Exercise Set</h3>
-                {renderStartLink()}
+            {/* TODO: disable link if no exercises are selected */}
+            <div className={styles.main}>
+                <Link   to='/start-exercise' 
+                        className={styles.linkStartExercise}
+                        state={{data:select}}>Start Workout</Link>
             </div>
-            <div>
-                <h3>Add Exercise</h3>
-                <Link to="/add-exercise">Add</Link>
-            </div>
+            {/* debugging */}
+            <button onClick={()=>console.log(select)}>Show Selected Exercise</button>
         </>
     ) 
 }
