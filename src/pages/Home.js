@@ -3,8 +3,6 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 
-import styles from '../css/style.module.css'
-
 export default function Home(){
 
     const [allWorkout, setAllWorkout] = useState([])

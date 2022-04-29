@@ -5,7 +5,7 @@ import StartExercise from "../pages/StartExercise"
 import AddExercise from "../pages/AddExercise"
 import Home from "../pages/Home"
 
-import Header from "../components/Header"
+import Header from "./Header"
 
 export default function App(){
     return (
