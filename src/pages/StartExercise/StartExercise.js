@@ -1,9 +1,9 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 import { useLocation  } from 'react-router-dom'
-import notificationStart from '../resources/begin.mp3'
-import notificationTransition from '../resources/notification.mp3'
-import notificationEnd from   '../resources/completed.mp3'
+import notificationStart from '../../resources/begin.mp3'
+import notificationTransition from '../../resources/notification.mp3'
+import notificationEnd from   '../../resources/completed.mp3'
 import axios from 'axios'
 
 export default function StartExercise(){

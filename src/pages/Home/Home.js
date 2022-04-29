@@ -48,7 +48,10 @@ export default function Home(){
     }
 
     return(
-        <div>
+        <>
+            <div>
+                <h1>Banner with inspirational quotes</h1>
+            </div>
             <div>
                 <h3>Select workout</h3>
                 {renderWorkout}
@@ -62,6 +65,6 @@ export default function Home(){
                 <h3>Add Exercise</h3>
                 <Link to="/add-exercise">Add</Link>
             </div>
-        </div>
+        </>
     ) 
 }
