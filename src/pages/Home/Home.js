@@ -71,6 +71,7 @@ export default function Home(){
                     onClick={(event)=> {
                         event.preventDefault()
                         // TODO: notify user to sel
+                        alert("Please select a workout")
                         console.log("Please sel workout")
                         }}
                     >Start Workout
