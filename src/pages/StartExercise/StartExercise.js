@@ -99,7 +99,7 @@ export default function StartExercise(){
         return (
             <>
                 <div>
-                    <h3 className={styles.workoutSet}>Set Name</h3>
+                    <h3 className={styles.workoutSet}>{exerciseData.setName}</h3>
                 </div>
                 <div className={styles.workoutContainer}>
                     <h1 className={styles.workoutExercise}>{exerciseName}</h1>
