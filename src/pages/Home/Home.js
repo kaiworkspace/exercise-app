@@ -37,16 +37,45 @@ export default function Home(){
             )
     })
 
-    const renderStartLink = ()=>{
+    // const renderStartLink = ()=>{
+    //     if(flag == true){
+    //         return (
+    //             // pass data using state
+    //             <Link to="/start-exercise" state={
+    //                 {
+    //                 data: select
+    //                 }
+    //             }
+    //             >Start</Link>
+    //         )
+    //     }
+    // }
+
+    const renderStartLink =()=>{
         if(flag == true){
             return (
-                // pass data using state
-                <Link to="/start-exercise" state={
-                    {
-                    data: select
-                    }
-                }
-                >Start</Link>
+                <Link   
+                    to='/start-exercise' 
+                    className={styles.linkEnableStartExercise}
+                    state={{data:select}}
+                    >Start Workout
+                </Link>
+            )
+        }
+
+        else{
+            return (
+                <Link   
+                    to='/start-exercise' 
+                    className={styles.linkDisableStartExercise}
+                    state={{data:select}}
+                    onClick={(event)=> {
+                        event.preventDefault()
+                        // TODO: notify user to sel
+                        console.log("Please sel workout")
+                        }}
+                    >Start Workout
+                </Link>
             )
         }
     }
@@ -66,11 +95,8 @@ export default function Home(){
                     <h3>Exercises</h3>
                 </div>
             </div>
-            {/* TODO: disable link if no exercises are selected */}
             <div className={styles.main}>
-                <Link   to='/start-exercise' 
-                        className={styles.linkStartExercise}
-                        state={{data:select}}>Start Workout</Link>
+                {renderStartLink()}
             </div>
             {/* debugging */}
             <button onClick={()=>console.log(select)}>Show Selected Exercise</button>
