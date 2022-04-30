@@ -41,38 +41,44 @@ export default function StartExercise(){
         const data = exerciseData.setExercise
         let exerciseDuration = exerciseData.setDuration
         console.log("data: " + data)
-        // TODO update function
-        data.forEach((exercise, index)=>{
-            let counter = exerciseDuration
-            setTimeout(()=>{
-                // change display exercise
-                setExerciseName(exercise)
 
-                // play notification sound
-                audioStart.play()
+        // wait 3 seconds to begin
+        setExerciseName("Begining...")
+        setTimeout(()=>{
 
-                // loop individual exercise time
-                const interval = setInterval(()=>{
-                    setTime(counter)
-                    console.log(counter)
-                    counter -= 1
-                    if(counter == 0){
-                        if(data.length-1 == index){
-                            setExerciseName("Complete")
-                            // play exercise end
-                            audioEnd.play()
+            data.forEach((exercise, index)=>{
+                let counter = exerciseDuration
+                setTimeout(()=>{
+                    // change display exercise
+                    setExerciseName(exercise)
+    
+                    // play notification sound
+                    audioStart.play()
+    
+                    // loop individual exercise time
+                    const interval = setInterval(()=>{
+                        setTime(counter)
+                        console.log(counter)
+                        counter -= 1
+                        if(counter == 0){
+                            if(data.length-1 == index){
+                                setExerciseName("Complete")
+                                // play exercise end
+                                audioEnd.play()
+                            }
+                            else{
+                                setExerciseName("Transitioning")
+                                audioTransition.play()
+                            }
                         }
-                        else{
-                            setExerciseName("Transitioning")
-                            audioTransition.play()
+                        if(counter == -6){
+                            clearInterval(interval)
                         }
-                    }
-                    if(counter == -6){
-                        clearInterval(interval)
-                    }
-                }, 200)
-            }, index*(exerciseDuration+6)*200)
-        })
+                    }, 200)
+                }, index*(exerciseDuration+6)*200)
+            })
+        }, 3000)
+
     }
 
     const renderTime=()=>{
