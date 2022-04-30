@@ -3,7 +3,7 @@ import React from 'react'
 export default function About(){
     return (
         <>
-            This is the about page
+            This is the about and contact page
         </>
     )
 }
