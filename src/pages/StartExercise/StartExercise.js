@@ -6,11 +6,13 @@ import notificationTransition from '../../resources/notification.mp3'
 import notificationEnd from   '../../resources/completed.mp3'
 import axios from 'axios'
 
+import styles from './style.module.css'
+
 export default function StartExercise(){
     
     // TODO use props to pass data
     const location = useLocation()
-    const [exerciseName, setExerciseName] = useState("")
+    const [exerciseName, setExerciseName] = useState("Ready")
     const [time, setTime] = useState(0)
     const [exerciseData, setExerciseData] = useState(null)
     const [loading, setLoading] = useState(true)
@@ -95,13 +97,21 @@ export default function StartExercise(){
     }
     else{
         return (
-            <div>
-                <h1>{exerciseName}</h1>
-                <h3>{renderTime()}</h3>
-                <button onClick={startExercise}>Start</button>
+            <>
+                <div>
+                    <h3 className={styles.workoutSet}>Set Name</h3>
+                </div>
+                <div className={styles.workoutContainer}>
+                    <h1 className={styles.workoutExercise}>{exerciseName}</h1>
+                    <h3 className={styles.workoutTimer}>{renderTime()}s</h3>
+                </div>
+                <div className={styles.startWorkoutContainer}>
+                    <button onClick={startExercise}>Start</button>
+                </div>
+                {/* debugging */}
                 <button onClick={()=>console.log(exerciseData)}>Press Me</button>
                 <button onClick={()=>console.log(location.state.data)}>Test State</button>
-            </div>
+            </>
         )
     }
 }
