@@ -8,7 +8,7 @@ import styles from './style.module.css'
 export default function Home(){
 
     const [allWorkout, setAllWorkout] = useState([])
-    const [select, setSelect] = useState([])
+    const [select, setSelect] = useState({})
     const [flag, setFlag] = useState(false)
     // fetch info from server
     const fetchWorkOut = async ()=>{
@@ -37,19 +37,18 @@ export default function Home(){
             )
     })
 
-    // const renderStartLink = ()=>{
-    //     if(flag == true){
-    //         return (
-    //             // pass data using state
-    //             <Link to="/start-exercise" state={
-    //                 {
-    //                 data: select
-    //                 }
-    //             }
-    //             >Start</Link>
-    //         )
-    //     }
-    // }
+    const renderExercise=()=>{
+        // console.log(select)
+        if(flag==false){
+            return (<p>Hello world</p>)
+        }
+        else{
+            select.setExercise.map((exercise)=>{
+                console.log(exercise)
+            })
+            
+        }
+    }
 
     const renderStartLink =()=>{
         if(flag == true){
@@ -93,6 +92,9 @@ export default function Home(){
                 </div>
                 <div className={styles.mainSub}>
                     <h3>Exercises</h3>
+                    <div>{flag? select.setExercise.map((exercise, index)=>{
+                        return <h4 key={index}>{exercise}</h4>
+                    }): <h4>Select a workout</h4> }</div>
                 </div>
             </div>
             <div className={styles.main}>

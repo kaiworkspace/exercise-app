@@ -102,18 +102,33 @@ def getAllWorkout():
     # get data from database
     connection = sqlite3.Connection('exercise.db')
     cursor = connection.cursor()
-
+     
+    # all exercises
     cursor.execute("""
-        SELECT ES.setId, ES.setName FROM ExerciseSet ES
+        SELECT E.exerciseId, E.exerciseName, E.setId FROM Exercise E
     """)
-    for items in cursor:
-        setId = items[0]
-        setName = items[1]
-        workout = {"setId": setId, "setName": setName}
-        workoutArr.append(workout)
-        
-    
-    jsonData = json.dumps(workoutArr)
+    allExercise = cursor.fetchall()
+
+    # all workouts
+    cursor.execute("""
+        SELECT ES.setId, Es.setName, ES.setDuration FROM ExerciseSet ES
+    """)
+    allWorkout = cursor.fetchall()
+
+    allData = []
+    for workout in allWorkout:
+        exerciseArr = []
+        for exercise in allExercise:
+            if(workout[0] == exercise[2]):
+                exerciseArr.append(exercise[1])
+        workoutObj = {
+            "setId": workout[0], 
+            "setName": workout[1],
+            "setExercise": exerciseArr
+            }
+        allData.append(workoutObj)
+    print(allData)
+    jsonData = json.dumps(allData)
 
     return jsonify(
         message = "Successfully fetched data ",
