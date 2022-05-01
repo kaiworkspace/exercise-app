@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Courgette&family=Prompt:wght@300&family=Whisper&display=swap');
+/* logo styles */
+.container{
+    /* border: 2px solid black; */
+    padding: 1em;
+}
+
+.logoContainer{
+    display: flex;
+    justify-content: center;
+}
+
+.logoDiamond{
+    border: 2px solid black;
+    display: flex;
+    justify-content: center;
+    height: 80px;
+    width: 80px;
+    color:brown;
+    transform: rotate(45deg);
+    background-color: black;
+}
+
+.logoText{
+    transform: rotate(-45deg);
+    height: 30px;
+    width: 30px;
+    font-family: 'Courgette', cursive;
+    font-size: 1.5em;
+    color: white;
+}
+
+.logoTitle{
+    color: red;
+    text-align: center;
+    font-family: 'Whisper', cursive;
+    font-size: 1.5em;
+    margin-bottom: 0;
+}
+
+.logoMotto{
+    color: black;
+    text-align: center;
+    font-family: 'Prompt', sans-serif;
+    margin: 0;
+}
