@@ -1,26 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Courgette&family=Prompt:wght@300&family=Whisper&display=swap');
+
 /* navbar styles */
 .navBar{
     border: 2px dotted rgb(63, 59, 59);
+    background-color: black;
 }
 
 .navBarList{
     color: black;
     list-style: none;
     display: flex;
-    /* border: 2px solid red; */
     justify-content: center;
+    height: 2em;
 }
 
 .navBarLinks{
-    color: black;
+    color: white;
     text-decoration: none;
+    font-family: 'Prompt', sans-serif;
     margin-left: 2em;
     margin-right: 2em;
     padding: 1em;
-    border: 2px solid goldenrod;
+    /* border: 2px solid goldenrod; */
 }
 
 .navBarLinks:hover{
     color: aquamarine;
+    font-size: larger;
     transition: 250ms;
 }
