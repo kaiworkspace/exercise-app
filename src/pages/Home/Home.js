@@ -44,31 +44,38 @@ export default function Home(){
     const renderStartLink =()=>{
         if(flag == true){
             return (
-                <>
-                    
-                    <Link   
-                        to='/start-exercise' 
-                        className={styles.linkEnableStartExercise}
-                        state={{data:select}}
-                        >Start Workout
-                    </Link>
-                </>
+                <div className={styles.linkEnabledContainer}>
+                    <FaDumbbell className={styles.dumbbellEnabled}/>
+                    <div>
+                        <Link   
+                            to='/start-exercise' 
+                            className={styles.linkEnableStartExercise}
+                            state={{data:select}}
+                            >Start Workout
+                        </Link>
+                    </div>
+                </div>
             )
         }
 
         else{
-            return (
-                <Link   
-                    to='/start-exercise' 
-                    className={styles.linkDisableStartExercise}
-                    state={{data:select}}
-                    onClick={(event)=> {
-                        event.preventDefault()
-                        // TODO: notify user to sel
-                        alert("Please select a workout")
-                        }}
-                    >Start Workout
-                </Link>
+            return ( 
+                <div className={styles.linkDisabledContainer}>
+                    <FaDumbbell className={styles.dumbbellDisabled} />
+                    <div>
+                        <Link   
+                            to='/start-exercise' 
+                            className={styles.linkDisableStartExercise}
+                            onClick={(event)=> {
+                                event.preventDefault()
+                                // TODO: notify user to sel
+                                alert("Please select a workout")
+                                }}
+                            >Start Workout
+                        </Link>
+
+                    </div>
+                </div>
             )
         }
     }
@@ -120,7 +127,7 @@ export default function Home(){
                 {renderStartLink()}
             </div>
             {/* debugging */}
-            <button onClick={()=>console.log(select)}>Show Selected Exercise</button>
+            {/* <button onClick={()=>console.log(select)}>Show Selected Exercise</button> */}
         </>
     ) 
 }

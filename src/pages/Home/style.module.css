@@ -123,11 +123,12 @@
     color: black;
     text-decoration: none;
     font-size: 2em;
-    font-weight: 400;
 }
 
 .linkEnableStartExercise:hover{
     cursor: pointer;
+    color: crimson;
+    transition: 250ms;
 }
 
 .linkDisableStartExercise{
@@ -138,4 +139,39 @@
 
 .linkDisableStartExercise:hover{
     cursor: not-allowed;
+}
+
+.linkDisabledContainer{
+    display: block;
+    text-align: center;
+}
+
+.linkEnabledContainer{
+    display: block;
+    text-align: center;
+}
+
+.linkEnabledContainer:hover .dumbbellEnabled{
+    color: crimson;
+    transform: rotate(360deg);
+    transition: 500ms;
+}
+
+.linkEnabledContainer:hover .linkEnableStartExercise{
+    color: crimson;
+    transition: 500ms;
+}
+
+.dumbbellEnabled{
+    margin-top: 0.25em;
+    margin-right: 0.2em;
+    font-size: 2em;
+    color: black;
+}
+
+.dumbbellDisabled{
+    margin-top: 0.25em;
+    margin-right: 0.2em;
+    font-size: 2em;
+    color: lightgray;
 }
