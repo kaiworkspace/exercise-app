@@ -4,7 +4,8 @@ import axios from 'axios'
 import { Link } from 'react-router-dom'
 
 import styles from './style.module.css'
-import banner from '../../resources/banner2.jpg'
+import { IoCreate } from "react-icons/io5"
+import { FaDumbbell, FaMousePointer } from "react-icons/fa"
 
 export default function Home(){
 
@@ -25,41 +26,33 @@ export default function Home(){
 
     const renderWorkout = allWorkout.map((workout)=>{
         return (
-            <div 
-                className={styles.workoutSel}
-                key={workout.setId}>
-                <h3 onClick={()=>{
-                    setSelect(workout)
-                    setFlag(true)
-                }}>
-                    {workout.setName}
-                </h3>
+            <div className={styles.workoutSelContainer}>
+                <div 
+                    className={styles.workoutSel}
+                    key={workout.setId}>
+                    <h3 onClick={()=>{
+                        setSelect(workout)
+                        setFlag(true)
+                    }}>
+                        {workout.setName}
+                    </h3>
+                </div>
             </div>
             )
     })
 
-    const renderExercise=()=>{
-        // console.log(select)
-        if(flag==false){
-            return (<p>Hello world</p>)
-        }
-        else{
-            select.setExercise.map((exercise)=>{
-                console.log(exercise)
-            })
-            
-        }
-    }
-
     const renderStartLink =()=>{
         if(flag == true){
             return (
-                <Link   
-                    to='/start-exercise' 
-                    className={styles.linkEnableStartExercise}
-                    state={{data:select}}
-                    >Start Workout
-                </Link>
+                <>
+                    
+                    <Link   
+                        to='/start-exercise' 
+                        className={styles.linkEnableStartExercise}
+                        state={{data:select}}
+                        >Start Workout
+                    </Link>
+                </>
             )
         }
 
@@ -88,23 +81,42 @@ export default function Home(){
                     <h1>Begins with a single step</h1>
                 </div>
             </div>
-            <div>
-                Description
+            <div className={styles.descriptionContainer}>
+                <div className={styles.description}>
+                    Take your first step with Workout. Control what exercise to do, how you want to do it.  
+                </div>
+            </div>
+            <div className={styles.stepsContainer}>
+                <div className={styles.step}>
+                    <IoCreate className={styles.icons}/>
+                    <h4 className={styles.stepTitle}>Step 1</h4>
+                    <h4>Create Your Workout Routines</h4>
+                </div>
+                <div className={styles.step}>
+                    <FaMousePointer className={styles.icons}/>
+                    <h4 className={styles.stepTitle}>Step 2</h4>
+                    <h4>Select Your Workout Routines</h4>
+                </div>
+                <div className={styles.step}>
+                    <FaDumbbell className={styles.icons}/>
+                    <h4 className={styles.stepTitle}>Step 3</h4>
+                    <h4>Start Working Out</h4>
+                </div>
             </div>
             <div className={styles.main}>
                 <div className={styles.mainSub}>
                     <h3>Select workout</h3>
                     <div>{renderWorkout}</div>
-                    <Link to='/add-exercise' className={styles.linkAddExercise}>Add Workout</Link>
+                    <Link to='/add-exercise' className={styles.linkAddExercise}>Create New Workout +</Link>
                 </div>
                 <div className={styles.mainSub}>
                     <h3>Exercises</h3>
                     <div>{flag? select.setExercise.map((exercise, index)=>{
-                        return <h4 key={index}>{exercise}</h4>
+                        return (<h4 key={index} className={styles.exercise}>{exercise}</h4>)
                     }): <h4>Select a workout</h4> }</div>
                 </div>
             </div>
-            <div className={styles.main}>
+            <div className={styles.startWorkoutContainer}>
                 {renderStartLink()}
             </div>
             {/* debugging */}
