@@ -1,8 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Courgette&family=Prompt:wght@300&family=Whisper&display=swap');
+
+
 /* home page style */
+.quoteContainer{
+    display: flex;
+    justify-content: center;
+    background-color: black;
+    margin: 0;
+}
 
 .quote{
-    border: 2px solid red;
+    /* border: 2px solid red; */
+    color: white;
+    height: 300px;
+    width: 1024px;
     text-align: center;
+    background-image: url(../../resources/runner2.jpg);
+    font-family: 'Prompt', sans-serif;
 }
 
 .main{

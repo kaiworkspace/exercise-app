@@ -4,6 +4,7 @@ import axios from 'axios'
 import { Link } from 'react-router-dom'
 
 import styles from './style.module.css'
+import banner from '../../resources/banner2.jpg'
 
 export default function Home(){
 
@@ -72,7 +73,6 @@ export default function Home(){
                         event.preventDefault()
                         // TODO: notify user to sel
                         alert("Please select a workout")
-                        console.log("Please sel workout")
                         }}
                     >Start Workout
                 </Link>
@@ -81,9 +81,15 @@ export default function Home(){
     }
 
     return(
-        <>
-            <div className={styles.quote}>
-                <h1>Banner with inspirational quotes</h1>
+        <>  
+            <div className={styles.quoteContainer}>
+                <div className={styles.quote}>
+                    <h1>The Journey of a thousand miles</h1>
+                    <h1>Begins with a single step</h1>
+                </div>
+            </div>
+            <div>
+                Description
             </div>
             <div className={styles.main}>
                 <div className={styles.mainSub}>
