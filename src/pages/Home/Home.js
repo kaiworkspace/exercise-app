@@ -112,7 +112,7 @@ export default function Home(){
             </div>
             <div className={styles.main}>
                 <div className={styles.mainSub}>
-                    <h3>Select workout</h3>
+                    <h3>Select Workout</h3>
                     <div>{renderWorkout}</div>
                     <Link to='/add-exercise' className={styles.linkAddExercise}>Create New Workout +</Link>
                 </div>
