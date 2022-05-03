@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Courgette&family=Prompt:wght@300&family=Whisper&family=Oswald&family=Varela+Round&display=swap');
+
+.iconContainer{
+    /* border: 2px solid white; */
+}
+
+.diamondContainer{
+    display: flex;
+    justify-content: center;
+}
+
+.diamond{
+    height: 30px;
+    width: 30px;
+    border: 2px solid white;
+    background-color: white;
+    transform: rotate(45deg);
+    margin-top: 2em;
+}
+
+.w{
+    transform: rotate(-45deg);
+    padding-top: 5px;
+    padding-left: 5px;
+    font-family: 'Courgette';
+    color: black;
+    font-weight: 600;
+}
+
+.title{
+    text-align: center;
+    margin-top: 1em;
+    font-family: 'Whisper';
+    font-weight: 300;
+    font-size: large;
+}
+
+.motto{
+    font-family: 'Prompt';
+}

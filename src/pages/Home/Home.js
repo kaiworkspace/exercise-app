@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom'
 import styles from './style.module.css'
 import { IoCreate } from "react-icons/io5"
 import { FaDumbbell, FaMousePointer } from "react-icons/fa"
+import Footer from '../../components/Footer'
 
 export default function Home(){
 
@@ -126,8 +127,7 @@ export default function Home(){
             <div className={styles.startWorkoutContainer}>
                 {renderStartLink()}
             </div>
-            {/* debugging */}
-            {/* <button onClick={()=>console.log(select)}>Show Selected Exercise</button> */}
+            <Footer />
         </>
     ) 
 }
