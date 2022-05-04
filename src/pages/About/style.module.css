@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Courgette&family=Prompt:wght@300&family=Whisper&family=Oswald&family=Varela+Round&display=swap');
+
+
+.title{
+    text-align: center;
+    font-family: 'Oswald';
+}
+
+.aboutDescription{
+    text-align: center;
+    font-family: 'Prompt';
+}
+
+.iconContainer{
+    display: flex;
+    justify-content: center;
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
+
+.icon{
+    font-size: 3.5em;
+    margin-left: 1em;
+    margin-right: 1em;
+}
+
+.icon:hover{
+    color: crimson;
+    cursor: pointer;
+    transform: rotate(360deg);
+    transition: 750ms;
+}
+
+.message{
+    /* border: 2px solid red; */
+    height: 2em;
+    text-align: center;
+    font-family: 'Prompt';
+    font-weight: 600;
+    background-color: lightgray;
+}
+
+.contactContainer{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    /* border: 2px dotted grey; */
+    font-family: 'Oswald';
+}
+
+.email{
+    height: 45px;
+    width: 400px;
+    margin-bottom: 1em;
+}
+
+.para{
+    height: 250px;
+    width: 750px;
+    resize: none;
+}
+
+.submitContainer{
+    /* border: 2px solid red; */
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2em;
+
+}
+
+.submit{
+    /* border: 2px dashed pink; */
+}
+
+.submit:hover{
+    cursor: pointer;
+    color: crimson;
+    transition: 250ms;
+}
