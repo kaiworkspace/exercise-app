@@ -6,8 +6,10 @@ import notificationTransition from '../../resources/notification.mp3'
 import notificationEnd from   '../../resources/completed.mp3'
 import axios from 'axios'
 
-import styles from './style.module.css'
+import Footer from '../../components/Footer'
 
+import styles from './style.module.css'
+import { FaDumbbell } from 'react-icons/fa'
 export default function StartExercise(){
     
     // TODO use props to pass data
@@ -16,6 +18,7 @@ export default function StartExercise(){
     const [time, setTime] = useState(0)
     const [exerciseData, setExerciseData] = useState(null)
     const [loading, setLoading] = useState(true)
+    const [run, setRun] = useState(false)
 
     useEffect(()=>{
         getAllData()
@@ -40,6 +43,8 @@ export default function StartExercise(){
         audioTransition.loop = false
         audioEnd.loop = false
 
+        setRun(true)
+
         const data = exerciseData.setExercise
         let exerciseDuration = exerciseData.setDuration
         console.log("data: " + data)
@@ -62,11 +67,12 @@ export default function StartExercise(){
                         setTime(counter)
                         console.log(counter)
                         counter -= 1
-                        if(counter == 0){
+                        if(counter == -1){
                             if(data.length-1 == index){
                                 setExerciseName("Complete")
                                 // play exercise end
                                 audioEnd.play()
+                                setRun(false)
                             }
                             else{
                                 setExerciseName("Transitioning")
@@ -76,8 +82,8 @@ export default function StartExercise(){
                         if(counter == -6){
                             clearInterval(interval)
                         }
-                    }, 200)
-                }, index*(exerciseDuration+6)*200)
+                    }, 1000)
+                }, index*(exerciseDuration+6)*1000)
             })
         }, 3000)
 
@@ -92,6 +98,25 @@ export default function StartExercise(){
         }
     }
 
+    const renderStart = ()=>{
+        if(run == false){
+            return (
+                <div className={styles.sth}>
+                    <FaDumbbell className={styles.startIconEnable}/>
+                    <h2 className={styles.startButtonEnable} onClick={startExercise}>Start</h2>
+                </div>
+            )
+        }
+        else{
+            return (
+                <div className={styles.sth}>
+                    <FaDumbbell className={styles.startIconDisable}/>
+                    <h2 className={styles.startButtonDisableable} onClick={alert("Workout has alreay started")}>Start</h2>
+                </div>
+            )
+        }
+    }
+
     if(loading){
         return <div>Page is Loading...</div>
     }
@@ -101,16 +126,22 @@ export default function StartExercise(){
                 <div>
                     <h3 className={styles.workoutSet}>{exerciseData==null? <>Loading</>: <>{exerciseData.setName}</>}</h3>
                 </div>
-                <div className={styles.workoutContainer}>
-                    <h1 className={styles.workoutExercise}>{exerciseName}</h1>
-                    <h3 className={styles.workoutTimer}>{renderTime()}s</h3>
+                <div className={styles.mainContainer}>
+                    <div className={styles.display}>
+                        <h1 className={styles.workoutExercise}>{exerciseName}</h1>
+                        <h3 className={styles.workoutTimer}>{renderTime()}s</h3>
+                    </div>
                 </div>
                 <div className={styles.startWorkoutContainer}>
-                    <button onClick={startExercise}>Start</button>
+                    <div className={run==false? styles.startDiv: styles.startDivDisable}>
+                        <FaDumbbell className={run==false? styles.startIconEnable: styles.startIconDisable}/>
+                        <h2 className={run==false? styles.startButtonEnable: styles.startButtonDisable} onClick={run==false? startExercise: ()=>{alert("Workout has already started")}}>Start</h2>
+                    </div>
                 </div>
+                <Footer />
                 {/* debugging */}
-                <button onClick={()=>console.log(exerciseData)}>Press Me</button>
-                <button onClick={()=>console.log(location.state.data)}>Test State</button>
+                {/* <button onClick={()=>console.log(exerciseData)}>Press Me</button> */}
+                {/* <button onClick={()=>console.log(location.state.data)}>Test State</button> */}
             </>
         )
     }
