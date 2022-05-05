@@ -58,6 +58,7 @@
     height: 250px;
     width: 750px;
     resize: none;
+    font-family: 'Prompt';
 }
 
 .submitContainer{
