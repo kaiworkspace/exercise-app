@@ -3,11 +3,17 @@ import React, { useState } from 'react'
 import { FaGithub, FaLinkedin, FaGoogle, FaInstagramSquare } from 'react-icons/fa'
 import styles from './style.module.css'
 import Footer from '../../components/Footer'
-import { clear } from '@testing-library/user-event/dist/clear'
+import { validEmail } from './Regex'
+import axios from 'axios'
 
 export default function About(){
 
     const [message, setMessage] = useState("")
+    const [email, setEmail] = useState("")
+    const [feedback, setFeedback] = useState("")
+
+    const [emailError, setEmailError] = useState(false)
+    const [feedbackError, setFeedbackError] = useState(false)
 
     const handleIconClick = ()=>{
         setMessage("Coming soon...")
@@ -18,21 +24,46 @@ export default function About(){
 
     const validateTextFields=()=>{
         // TO DO
-    }
+        if(!validEmail.test(email)){
+            setEmailError(true)
+            alert("invalid email")
+        }else{
+            setEmailError(false)
+        }
+        // check if message > 0
+        
+        if(feedback.length <= 0){
+            setFeedbackError(true)
+            alert("Feedback is empty")
+        }else if(feedback.length > 500){
+            setFeedbackError(true)
+            alert("Please keep feedback to below 500 chars")
+        }else{
+            setFeedbackError(false)
+        }
 
-    const saveTextFields=()=>{
-        // TO DO
     }
 
     const clearTextFields=()=>{
-        // TO DO
+        setEmail("")
+        setFeedback("")
     }
 
-    const handleSubmitButtonClick=()=>{
+    const handleSubmitButtonClick= async()=>{
         validateTextFields()
-        saveTextFields()
-        clearTextFields()
-        alert("Thankyou! Your response has been submitted")
+        if(emailError==false && feedbackError==false){
+            // send data to server
+            const data = JSON.stringify({email: email, feedback: feedback})
+            const res = await axios.post("/submit-feedback", data)
+            if(res.data.data == 'ok'){
+                alert("Successfully submitted feedback")
+                clearTextFields()
+            }
+            else{
+                alert("Sever error, Please try again")
+            }
+            
+        }
     }
 
     return (
@@ -56,9 +87,19 @@ export default function About(){
             <div className={styles.contactContainer}>
                 <div>
                     <h2>Got an idea or suggestions? Let us know!</h2>
-                    <input className={styles.email} placeholder='email'></input>
-                    <div>
-                        <textarea className={styles.para} placeholder="I'm sweating it..." />
+                    <input 
+                        className={emailError==false? styles.emailPass: styles.emailFail} 
+                        placeholder='email'
+                        value={email}
+                        onChange={(e)=>{setEmail(e.target.value)}}>
+                    </input>
+                    <div className={styles.feedbackContainer}>
+                        <textarea 
+                            className={styles.para} 
+                            placeholder="I'm sweating it..." 
+                            value={feedback}
+                            onChange={(e)=>{setFeedback(e.target.value)}}/>
+                        <p className={styles.charCount}>{feedback.length}/500</p>
                     </div>
                     <div className={styles.submitContainer}>
                         <h3 className={styles.submit} onClick={handleSubmitButtonClick}>Submit</h3>

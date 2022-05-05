@@ -48,10 +48,18 @@
     font-family: 'Oswald';
 }
 
-.email{
+.emailPass{
     height: 45px;
     width: 400px;
     margin-bottom: 1em;
+    border-color: green;
+}
+
+.emailFail{
+    height: 45px;
+    width: 400px;
+    margin-bottom: 1em;
+    border-color: crimson;
 }
 
 .para{
@@ -59,6 +67,13 @@
     width: 750px;
     resize: none;
     font-family: 'Prompt';
+}
+
+.charCount{
+    /* border: 2px solid red; */
+    margin-top: 0;
+    text-align: end;
+    font-size: 0.5em;
 }
 
 .submitContainer{

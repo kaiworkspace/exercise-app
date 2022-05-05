@@ -95,6 +95,24 @@ def postExercise():
         status = 200
     )
 
+@app.route('/submit-feedback', methods=['POST'])
+def PostFeedback():
+    data = json.loads(request.get_data())
+    email = data['email']
+    feedback = data['feedback']
+    line = email + ',' + feedback
+    with open('feedback.txt', 'a') as file:
+        file.writelines(line+'\n')
+    file.close()
+
+    return(
+        jsonify(
+        message = "Successfully posted data ",
+        category = "Success",
+        data = "ok",
+        status = 200
+        )
+    )
 
 @app.route('/home', methods=["GET"])
 def getAllWorkout():
