@@ -1,6 +1,8 @@
 import react from 'react'
 import axios from 'axios'
 import { useState, useEffect } from 'react'
+import styles from './style.module.css'
+import Footer from '../../components/Footer'
 
 export default function AddExercise(){
 
@@ -18,8 +20,6 @@ export default function AddExercise(){
         setNewExercise(tempSet)
         console.log(newExercise)
     }
-    
-    const horizontalStyle = { display: 'flex'}
 
     const handleExerciseNameChange=(event)=>{
         let tempName = event.target.value
@@ -47,9 +47,14 @@ export default function AddExercise(){
     const renderSets = newExercise.map((eachExercise)=>{
         return (
             <div key={eachExercise.exerciseId}>
-                <div style={horizontalStyle}>
+                <div className={styles.newExercise}>
                     <h3>Exercise name: </h3> 
-                    <input placeholder={eachExercise.exerciseName} id={eachExercise.exerciseId} onChange={handleExerciseNameChange}></input>
+                    <input 
+                        className={styles.textFieldsContainer}
+                        placeholder={eachExercise.exerciseName} 
+                        id={eachExercise.exerciseId} 
+                        onChange={handleExerciseNameChange}>        
+                    </input>
                 </div>
 
             </div>
@@ -57,6 +62,9 @@ export default function AddExercise(){
     })
 
     const saveSet= async ()=>{
+
+        validateInputs()
+
         const exerciseSet = {
                                 setName: setName,
                                 setDuration: intervalDuration,
@@ -67,28 +75,56 @@ export default function AddExercise(){
         // axios post
         const res = await axios.post("/add-exercise", parseSetData)
         console.log(res)
+        
+        clearFields()
+        alert("New workout created")
+    }
+
+    const validateInputs=()=>{
+        // TODO
+    }
+
+    const clearFields=()=>{
+        // TODO
     }
 
     return (
-        <div>
-            {/* title */}
-            <h1>Add A New Set</h1>
+        <>
+            <div className={styles.mainContainer}>
+                <div className={styles.titleContainer}>
+                    <h1>Add A New Workout</h1>
+                </div>
 
-            {/* inputs */}
-            <div style={horizontalStyle}>
-                <h2>New Set Name: </h2>
-                <input placeholder='set name' onChange={handleSetNameChange}></input>
+                <div className={styles.addContainer}>
+                    <div className={styles.middleContainer}>
+                        <div className={styles.subContainer}>
+                            <div>
+                                <h2>New Workout Name: </h2>
+                            </div>
+                            <div className={styles.textFieldsContainer}>
+                                <input placeholder='workout name' onChange={handleSetNameChange}></input>
+                            </div>
+                        </div>
+                        <div className={styles.subContainer}>
+                            <div>
+                                <h2>Exercise interval duration: </h2>
+                            </div>
+                            <div className={styles.textFieldsContainer}>
+                                <input placeholder='seconds' onChange={handleDurationChange}></input>
+                            </div>
+                        </div>
+                    </div>
+                    <div className={styles.middleContainer}>
+                        {renderSets}
+                        <h2 className={styles.plus} onClick={createSet}>+</h2>
+                    </div>
+                </div>
+                <div>
+                    <h3 className={styles.saveContainer} onClick={saveSet}>Save</h3>
+                </div>
             </div>
-            <div style={horizontalStyle}>
-                <h2>Exercise interval duration: </h2>
-                <input placeholder='seconds' onChange={handleDurationChange}></input>
-            </div>
-
-            {renderSets}
-            <h2 onClick={createSet}>+</h2>
-            <button onClick={saveSet}>Save</button>
-        </div>
-        
+            <Footer />
+        </>
         )
 
 }

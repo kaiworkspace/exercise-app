@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Courgette&family=Prompt:wght@300&family=Whisper&family=Oswald&family=Varela+Round&display=swap');
+
+.mainContainer{
+    font-family: 'Oswald';
+}
+
+.titleContainer{
+    /* border: 2px solid blue; */
+    text-align: center;
+}
+
+.addContainer{
+    display: flex;
+    justify-content: center;
+    border: 2px solid lightgray;
+    background-color: lightgray;
+    padding: 1em;
+}
+
+.middleContainer{
+    /* border: 2px solid gold; */
+    border-radius: 10px;
+    margin-right: 2em;
+    margin-left: 2em;
+    width: 500px;
+    text-align: center;
+    padding: 1em;
+    background-color: white;
+}
+
+.subContainer{
+    /* border: 2px dashed orange; */
+    display: flex;
+    justify-content: space-between;
+}
+
+.textFieldsContainer{
+    /* border: 2px solid red; */
+    align-self: center;
+    margin-left: 1.5em;
+}
+
+.newExercise{
+    /* border: 2px solid red; */
+    display: flex;
+    justify-content: space-around;
+}
+
+.plus{
+    font-size: 3em;
+}
+
+.plus:hover{
+    transition: 250ms;
+    color: crimson;
+    cursor: pointer;
+}
+
+.saveContainer{
+    display: flex;
+    justify-content: center;
+    margin-top: 2em;
+    margin-bottom: 4em;
+}
+
+.saveContainer:hover{
+    cursor: pointer;
+    transition: 250ms;
+    color: crimson;
+}
