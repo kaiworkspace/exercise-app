@@ -26,3 +26,4 @@ src/server/exercise.db
 src/server/test.db
 src/server/test.db-journal
 src/server/test.ipynb
+src/server/feedback.txt
