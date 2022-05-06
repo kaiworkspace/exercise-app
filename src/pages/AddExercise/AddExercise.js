@@ -82,6 +82,7 @@ export default function AddExercise(){
 
     const validateInputs=()=>{
         // TODO
+        // check workout name, duration and exercises are not empty
     }
 
     const clearFields=()=>{
